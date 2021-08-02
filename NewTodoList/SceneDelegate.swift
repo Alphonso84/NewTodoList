@@ -7,6 +7,7 @@
 
 import UIKit
 
+let userDefaults = UserDefaults.standard
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -16,8 +17,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window?.windowScene = windowScene
+        window?.makeKeyAndVisible()
+        window?.rootViewController = createMainNavigationController()
     }
+    
+    //MARK:- Create Navigation Controller and Set RootViewController
+        func createMainNavigationController() -> UINavigationController {
+               let todoVC = MainViewController()
+               todoVC.title = "ToDo List"
+               todoVC.view.backgroundColor = .systemBackground
+               return UINavigationController(rootViewController: todoVC)
+           }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -34,11 +47,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
+     //   let encodedData = try NSKeyedArchiver.archivedData(withRootObject: MainViewController.listsOfTasks, requiringSecureCoding: false)
+      //  userDefaults.setValue(data, forKey: "listOfTasks")
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+//        guard let storedArray = userDefaults.array(forKey: "listOfTasks") else {return}
+//        MainViewController.listsOfTasks = storedArray as! [TodoItem]
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
