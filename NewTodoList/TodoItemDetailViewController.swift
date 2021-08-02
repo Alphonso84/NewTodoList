@@ -38,9 +38,5 @@ class TodoItemDetailViewController: UIViewController {
         } else {
             // Fallback on earlier versions
         }
-        
     }
-    
-    
-
 }

@@ -21,8 +21,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         setupTextField()
     }
     
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         MainViewController.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         MainViewController.tableView.reloadData()
@@ -90,8 +88,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
            }
     }
-
-
 }
 
 extension MainViewController: UITextFieldDelegate {
